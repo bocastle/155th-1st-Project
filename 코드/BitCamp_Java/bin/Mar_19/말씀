@@ -1,0 +1,49 @@
+Date는 구버전(util에 있는 패키지 사용)
+하지만 잘 안씀
+
+날짜, 문자열 같은것은 '유틸'이라 칭한다
+
+자주쓰는 것은 static으로!!
+
+요즘 클라이언트들은 되게 깐깐
+
+소수점처리를 할수 있는 문자열 만드는거 까지만 알아둬도 충분(0, #)
+https://cafe.naver.com/opensourceweb?iframe_url=/MyCafeIntro.nhn%3Fclubid=30005254
+
+
+영어,특수문자,공백 -> 1바이트
+한글 -> 2바이트
+
+InputStream은 추상클래스
+
+암기
+byte단위의 통신
+inputStream / outputStream
+
+★
+FileinputStream / FileoutputStream
+>>이것도 별로안씀
+>>그냥 2바이트 짜리 통로를 씀
+
+추상 클래스
+InputStream, OutputStream
+두개의 클래스를 상속(재정의)
+
+Arrays : 보조클래스
+
+io는 클래스를 활용하는거라 종류가 되게 많음
+
+
+I/O작업은 대부분 GC의 대상이 아니다.
+그래서 명시적 자원의 해제를 반드시 해줘야한다.
+>>외부파일을 리드하고 write하는것이므로 gc가 관리를 못함
+
+클래스는 초기화를 null을 준다.
+
+
+
+
+
+
+
+
