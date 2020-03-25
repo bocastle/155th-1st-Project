@@ -1,5 +1,10 @@
 package BitStore.Interface;
 
-public interface PayMent {
+import java.util.List;
 
+import BitStore.util.Product;
+import BitStore.util.User;
+
+public interface PayMent {
+	public void buy(User user, List<Product> list);
 }
