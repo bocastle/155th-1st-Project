@@ -3,13 +3,13 @@ package BitStore.ui;
 import java.util.Scanner;
 import BitStore.*;
 import BitStore.util.*;
-import BitStore.ui.Admin.MemberUI;
-import BitStore.ui.Admin.ProductUI;
-import BitStore.ui.User.BitStoreUI;
-import BitStore.ui.User.UserUI;
+import BitStore.ui.admin.MemberUI;
+import BitStore.ui.admin.ProductUI;
+import BitStore.ui.user.BitStoreUI;
+import BitStore.ui.user.UserUI;
 
 public class LoginUI {
-	private Scanner sc = null;
+	private Scanner sc;
 	private BoardUI boardUI;
 	private BitStoreUI bitstoreUI;
 	private MemberUI memberUI;
@@ -39,7 +39,7 @@ public class LoginUI {
 				boardUI.commonBoard();
 				break;
 			case 4: // 로그아웃
-				userUI.service();
+//				userUI.service();
 				//로그아웃시 BitStore에 있는 currentLoginUser null로 초기화 추가
 			case 0:
 				quit();

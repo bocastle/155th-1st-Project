@@ -1,11 +1,11 @@
-package BitStore.ui.Admin;
+package BitStore.ui.admin;
 
 import java.util.Scanner;
 
 import BitStore.ui.BoardUI;
 import BitStore.ui.LoginUI;
-import BitStore.ui.User.BitStoreUI;
-import BitStore.ui.User.UserUI;
+import BitStore.ui.user.BitStoreUI;
+import BitStore.ui.user.UserUI;
 
 public class MemberUI {
 	private Scanner sc = new Scanner(System.in);

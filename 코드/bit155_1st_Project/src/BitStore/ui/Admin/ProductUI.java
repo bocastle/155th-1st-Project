@@ -1,4 +1,4 @@
-package BitStore.ui.Admin;
+package BitStore.ui.admin;
 
 import java.util.Scanner;
 
@@ -8,7 +8,6 @@ import BitStore.ui.LoginUI;
 public class ProductUI {
 	private Scanner sc = new Scanner(System.in);
 
-	// 包府磊老 版快
 	public void admin() {
 		while (true) {
 			switch (adminMenu()) {

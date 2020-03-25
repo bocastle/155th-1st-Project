@@ -1,4 +1,4 @@
-package BitStore.ui.Admin;
+package BitStore.ui.admin;
 
 public class BoardAdmin {
 

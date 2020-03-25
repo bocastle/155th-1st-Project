@@ -3,7 +3,7 @@ package BitStore.util;
 import java.util.List;
 
 public class PurChase {
-	public List<Product> basket;
+	public static List<Product> basket;
 	
 	public int selectPoint(User user) {
 		return 0;

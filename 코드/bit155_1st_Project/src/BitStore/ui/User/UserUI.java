@@ -1,4 +1,4 @@
-package BitStore.ui.User;
+package BitStore.ui.user;
 
 import java.util.Scanner;
 

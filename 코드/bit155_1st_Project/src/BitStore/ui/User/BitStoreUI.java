@@ -1,4 +1,4 @@
-package BitStore.ui.User;
+package BitStore.ui.user;
 
 import java.util.Scanner;
 
@@ -8,13 +8,15 @@ public class BitStoreUI {
 	public void user() {
 		while (true) {
 			switch (menu()) {
-			case 1:
+			case 1: //장바구니 담기, Purchase클래스의 insertBasket(List<Product>) : void
 				break;
-			case 2:
+			case 2: //상품 구입, Payment pay = n
 				break;
-			case 3:
+			case 3: //상품조회 Product클래스의 selectProduct() : Map<Integer,Product>
 				break;
-			case 4:
+			case 4: //포인트조회 Purchase클래스의 selectPoint(User) : int
+				break;
+			case 5: //돌아가기
 				break;
 			case 0:
 				quit();
@@ -31,13 +33,40 @@ public class BitStoreUI {
 
 	private int menu() {
 		System.out.println("-----------------");
-		System.out.println("1. 상품구입");
-		System.out.println("2. 로그인");
-		System.out.println("3. 아이디 찾기");
-		System.out.println("4. 비밀번호 찾기");
+		System.out.println("1. 장바구니 담기");
+		System.out.println("2. 상품구입");
+		System.out.println("3. 상품조회");
+		System.out.println("4. 포인트조회");
+		System.out.println("5. 돌아가기");
 		System.out.println("0. 종료");
 		System.out.println("-----------------");
 		System.out.print("메뉴 중 처리할 항목을 선택하세요 : ");
 		return Integer.parseInt(sc.nextLine());
 	}
+	
+	private int purchaseMenu() {
+		System.out.println("-----------------");
+		System.out.println("1. 상품할인");
+		System.out.println("2. 결제방식");
+		System.out.println("3. 돌아가기");
+		System.out.println("0. 종료");
+		System.out.println("-----------------");
+		System.out.print("메뉴 중 처리할 항목을 선택하세요 : ");
+		return Integer.parseInt(sc.nextLine());
+	}
+	
+	private int paymentMenu() {
+		System.out.println("-----------------");
+		System.out.println("1. 현금 구매");
+		System.out.println("2. 포인트 구매");
+		System.out.println("3. 돌아가기");
+		System.out.println("0. 종료");
+		System.out.println("-----------------");
+		System.out.print("메뉴 중 처리할 항목을 선택하세요 : ");
+		return Integer.parseInt(sc.nextLine());
+	}
+	
+	
+	
+	
 }
