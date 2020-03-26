@@ -403,7 +403,6 @@ public class BitStore {
 			bis = new BufferedInputStream(fis);
 			ois = new ObjectInputStream(bis);
 			userList = (HashMap) ois.readObject();
-			System.out.println("userList.txt 불러오기 : " + userList.toString());
 		} catch (Exception e) {
 			System.out.println("회원목록을 불러오는데 실패하였습니다.");
 			e.printStackTrace();

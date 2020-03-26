@@ -22,7 +22,6 @@ import BitStore.domain.ProductVO;
 import BitStore.domain.UserVO;
 import BitStore.ui.LoginUI;
 import BitStore.ui.user.BitStoreUI;
-import BitStore.ui.user.UserUI;
 
 public class BitStore {
 	public static Map<String, UserVO> userList = new HashMap();
@@ -335,8 +334,6 @@ public class BitStore {
 	}
 
 	public void logout() {
-		UserUI userUI = new UserUI();
-		userUI.service();
 
 	}
 
@@ -373,6 +370,15 @@ public class BitStore {
 			Iterator<String> mapIter = userList.keySet().iterator();
 			System.out.println("찾고 싶은 비밀번호의 ID를 입력해주세요");
 			String userID = sc.nextLine().trim();
+			while (mapIter.hasNext()) {
+				String key = mapIter.next();
+				UserVO value = userList.get(key);
+				if (value.getID().equals(userID)) {
+					System.out.println("맞는 아이디가 없습니다.");
+					findPwd();
+				}
+			}
+			
 			boolean flag = false;
 			System.out.println("찾고 싶은 비밀번호의 이름을 입력해주세요");
 			String userName = sc.nextLine().trim();
@@ -403,7 +409,6 @@ public class BitStore {
 			bis = new BufferedInputStream(fis);
 			ois = new ObjectInputStream(bis);
 			userList = (HashMap) ois.readObject();
-			System.out.println("userList.txt 불러오기 : " + userList.toString());
 		} catch (Exception e) {
 			System.out.println("회원목록을 불러오는데 실패하였습니다.");
 			e.printStackTrace();
@@ -422,7 +427,7 @@ public class BitStore {
 			bis = new BufferedInputStream(fis);
 			ois = new ObjectInputStream(bis);
 			productList = (HashMap) ois.readObject();
-			System.out.println("productList.txt 불러오기 : " + productList.toString());
+			System.out.println("productList.txt : " + productList.toString());
 		} catch (Exception e) {
 			System.out.println("상품목록을 불러오는데 실패하였습니다.");
 			e.printStackTrace();
