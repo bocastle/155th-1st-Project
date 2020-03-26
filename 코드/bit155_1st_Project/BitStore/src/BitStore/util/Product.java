@@ -64,31 +64,21 @@ public class Product {
 				}
 	}
 
-	public void writeProduct() {
+	static public void writeProduct() {
 		File file = new File("productList.txt");
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
 		ObjectOutputStream oos = null;
 		
-		FileInputStream fis = null;
-		BufferedInputStream bis = null;
-		ObjectInputStream ois = null;
-		
 		try {
 			fos = new FileOutputStream(file);
 			bos = new BufferedOutputStream(fos);
 			oos = new ObjectOutputStream(bos);
-			
 			oos.writeObject(BitStore.productList);
-			
-			fis = new FileInputStream(file);
-			bis = new BufferedInputStream(fis);
-			ois = new ObjectInputStream(bis);
-			BitStore.productList = (HashMap) ois.readObject();
-			System.out.println("저장된 productList.txt 불러오기 : " + BitStore.productList.toString());
 			
 		} catch (Exception e) {
 			System.out.println("상품목록 저장에 실패하였습니다.");
+			System.out.println(e.getMessage());
 			e.getStackTrace();
 		} finally {
 			try {

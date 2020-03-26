@@ -1,0 +1,26 @@
+package BitStore.Interface;
+
+import java.util.List;
+
+import BitStore.util.BitStore;
+import BitStore.util.Product;
+import BitStore.util.PurChase;
+import BitStore.util.User;
+
+public class CashPayMentImpl implements PayMent {
+	@Override
+	public void buy() {
+		// 가지고있는 돈보다 물건의 가격이 높을 경우
+		System.out.println("소유한 돈 " + BitStore.currentLoginUser.getMoney());
+		System.out.println("물건 총 가격 " + PurChase.totalPrice);
+		if (BitStore.currentLoginUser.getMoney() < PurChase.totalPrice) {
+			System.out.println("소유하신 돈이 부족합니다.");
+		} else {
+			int money = BitStore.currentLoginUser.getMoney() - PurChase.totalPrice;
+			BitStore.currentLoginUser.setMoney(money);
+			System.out.println("현재 남은 돈 : " + BitStore.currentLoginUser.getMoney());
+			System.out.println("구매해주셔서 감사합니다. 안녕히가세요.");
+		}
+		BitStore.writeUserList();
+	}
+}

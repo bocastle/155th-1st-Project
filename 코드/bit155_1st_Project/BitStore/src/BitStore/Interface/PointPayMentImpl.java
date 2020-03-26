@@ -2,12 +2,33 @@ package BitStore.Interface;
 
 import java.util.List;
 
+import BitStore.util.BitStore;
 import BitStore.util.Product;
+import BitStore.util.PurChase;
 import BitStore.util.User;
 
-public class PointPayMentImpl implements PayMent{
+public class PointPayMentImpl implements PayMent {
 	@Override
 	public void buy() {
-		
+		if (PurChase.dcFlag == false) {
+			if (PurChase.basket.size() != 0) {
+				for (int i = 0; i < PurChase.basket.size(); i++) {
+					PurChase.totalPrice += PurChase.basket.get(i).getPrice();
+				}
+			}
+		}
+		// 가지고있는 포인트보다 물건의 가격이 높을 경우
+		if (BitStore.currentLoginUser.getUserPoint() < PurChase.totalPrice) {
+			System.out.println("소유한 포인트 " + BitStore.currentLoginUser.getUserPoint());
+			System.out.println("상품 총 가격 " + PurChase.totalPrice);
+			System.out.println("소유하신 포인트가 부족합니다.");
+		} else {
+			int point = BitStore.currentLoginUser.getUserPoint() - PurChase.totalPrice;
+			BitStore.currentLoginUser.setUserPoint(point);
+			System.out.println("현재 남은 포인트 : " + BitStore.currentLoginUser.getUserPoint());
+
+			System.out.println("구매해주셔서 감사합니다. 안녕히가세요.");
+		}
+		BitStore.writeUserList();
 	}
 }

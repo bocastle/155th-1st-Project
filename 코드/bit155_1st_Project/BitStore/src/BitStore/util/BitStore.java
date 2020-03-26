@@ -37,7 +37,7 @@ public class BitStore {
 	private File productListFile;
 	private File discardProductListFile;
 	private File boardListFile;
-	private UserVO user;
+	public static UserVO user;
 	private SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd a HH:mm");
 	private Date date = new Date();
 
@@ -173,7 +173,7 @@ public class BitStore {
 	}
 
 	public void login() {
-
+		UserUI userUI = new UserUI();
 		System.out.println("[회원목록 조회]");
 		Iterator<String> mapIter = BitStore.userList.keySet().iterator();
 		while (mapIter.hasNext()) {
@@ -187,8 +187,8 @@ public class BitStore {
 			System.out.println("아이디를 입력해주세요 : ");
 			String userID = sc.nextLine().trim();
 			if (!userList.containsKey(userID)) {
-				System.out.println("해당하는 ID가 없습니다.");
-				login();
+				System.out.println("xxxxx 해당하는 ID가 없습니다 xxxxx");
+				userUI.service();
 			} else if (userList.containsKey(userID)) {
 				System.out.println("비밀번호를 입력해주세요 : ");
 				String userPwd = sc.nextLine().trim();
@@ -265,8 +265,8 @@ public class BitStore {
 			Pattern pwPattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$");
 			Matcher matcher1 = pwPattern.matcher(userPwd);
 			if (!matcher1.matches()) {
-				System.out.println("잘못 입력하셨습니다.");
-				System.out.println("8~20자 사이의 영문 과 숫자,특수문자를 조합해 다시 입력해 주세요.");
+				System.out.println("xxxxxxxx 잘못 입력하셨습니다 xxxxxxxx");
+				System.out.println("xxx 8~20자 사이의 영문 과 숫자,특수문자를 조합해 다시 입력해 주세요 xxx");
 				checkPwd();
 			} else {
 				user.setPwd(userPwd);
@@ -283,8 +283,8 @@ public class BitStore {
 			Pattern phonePattern = Pattern.compile("^01([0|1|0]?)-?([0-9]{3,4})-?([0-9]{4})$");
 			Matcher matcher1 = phonePattern.matcher(userPhone);
 			if (!matcher1.matches()) {
-				System.out.println("잘못 입력하셨습니다.");
-				System.out.println("010-0000-0000 형식으로 입력해 주세요.");
+				System.out.println("xxxxxxxx 잘못 입력하셨습니다 xxxxxxxx");
+				System.out.println("xxx 010-0000-0000 형식으로 입력해 주세요 xxx");
 				checkPhone();
 			} else {
 				user.setUserPhone(userPhone);
@@ -306,7 +306,7 @@ public class BitStore {
 				user.setDiscount(false);
 				break;
 			} else {
-				System.out.println("잘못입력 하셨습니다.");
+				System.out.println("xxxxxxxx 잘못 입력하셨습니다 xxxxxxxx");
 				checkDC();
 			}
 		}
@@ -339,6 +339,7 @@ public class BitStore {
 	public void logout() {
 		currentLoginUser = null;
 		UserUI userUI = new UserUI();
+		System.out.println("※※※ 이용해 주셔서 감사합니다 ※※※");
 		userUI.service();
 
 	}

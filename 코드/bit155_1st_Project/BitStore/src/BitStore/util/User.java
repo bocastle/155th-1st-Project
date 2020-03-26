@@ -41,7 +41,20 @@ public class User {
 	}
 
 	public void updateUser() {
-		
+		BitStore bs = new BitStore();
+		BitStore.user = BitStore.currentLoginUser;
+		System.out.println("※※※ 회원정보 수정입니다 ※※※ ");
+		System.out.println("● 수정할 비밀번호를 입력해주세요 : ");
+		bs.checkPwd();
+		System.out.println("● 수정할 이름을 입력해 주세요 : ");
+		BitStore.user.setUserName(in.nextLine().trim());
+		System.out.println("● 수정할 핸드폰 번호를 입력해 주세요 : ");
+		System.out.println("(010-0000-0000 형식으로 입력해 주세요.)");
+		bs.checkPhone();
+		BitStore.userList.put(BitStore.user.getID(), BitStore.user);
+		BitStore.writeUserList();
+		System.out.println("currentLoginUser" + BitStore.currentLoginUser);
+		System.out.println("user" + BitStore.user);
 	}
 
 	public void deleteUser() {
