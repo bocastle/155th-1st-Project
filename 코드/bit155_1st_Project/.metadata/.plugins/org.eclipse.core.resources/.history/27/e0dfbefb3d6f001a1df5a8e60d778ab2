@@ -37,8 +37,8 @@ public class BitStoreUI {
 				product2.selectProduct();
 				break;
 			case 5: // 포인트조회 Purchase클래스의 selectPoint(User) : int
-				PurChase purchase3 = new PurChase();
-				purchase3.selectPoint();
+				PurChase purchase2 = new PurChase();
+				purchase2.selectPoint();
 				break;
 			case 6: // 돌아가기
 				LoginUI loginUI = new LoginUI();
