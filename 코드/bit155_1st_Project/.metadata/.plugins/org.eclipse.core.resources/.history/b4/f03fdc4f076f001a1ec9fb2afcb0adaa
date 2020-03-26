@@ -11,13 +11,10 @@ import BitStore.util.BitStore;
 public class BitStoreMain {
 	public static void main(String[] args) {
 		
-		UserUI userUI = new UserUI();
-		userUI.service();
+		BitStore bs = new BitStore();
 		
-//		BitStore bs = new BitStore();
-		
-//		BitStoreUI pu = new BitStoreUI();
-//		pu.useBitStore();
+		BitStoreUI pu = new BitStoreUI();
+		pu.useBitStore();
 		
 //		BitStoreUI bsUI = new BitStoreUI();
 //		bsUI.user();

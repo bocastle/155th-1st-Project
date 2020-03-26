@@ -138,29 +138,24 @@ public class BitStore {
 		System.out.println("¡Ø Bit ÆíÀÇÁ¡ È¸¿ø°¡ÀÔÀ» È¯¿µ ÇÕ´Ï´Ù¡Ø");
 		System.out.println("»ç¿ëÇÒ ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä ");
 		System.out.println("(5~15ÀÚ »çÀÌÀÇ ¿µ¹® °ú ¼ıÀÚ¸¦ Á¶ÇÕÇØÁÖ¼¼¿ä.)");
-		checkID();
+		String userID = sc.nextLine().trim();
+		checkID(userID);
 		System.out.println("»ç¿ëÇÒ ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 		System.out.println("(8~20ÀÚ »çÀÌÀÇ ¿µ¹® °ú ¼ıÀÚ,Æ¯¼ö¹®ÀÚ¸¦ Á¶ÇÕÇØÁÖ¼¼¿ä.)");
-		checkPwd();
+		String userPwd = sc.nextLine().trim();
+		checkPwd(userPwd);
 		System.out.println("È¸¿ø´ÔÀÇ ÇÚµåÆù ¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
 		System.out.println("(010-0000-0000 Çü½ÄÀ¸·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä.)");
-		checkPhone();
+		String userPhone = sc.nextLine().trim();
+		checkPhone(userPhone);
 		System.out.println("È¸¿ø´ÔÀÇ ÀÜ¾×À» ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
 		user.setMoney(Integer.parseInt(sc.nextLine().trim()));
 		user.setUserPoint(1000);
 		System.out.println("ÇÒÀÎÄ«µå¸¦ ¼ÒÁöÇÏ¼Ì´Ù¸é 1¹øÀ» ¾ø´Ù¸é 2¹øÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
-		checkDC();
+		int userDC = (Integer.parseInt(sc.nextLine().trim()));
+		checkDC(userDC);
 		userList.put(user.getID(), user);
 		writeUserList();
-
-		// È¸¿ø¸ñ·Ï
-		System.out.println("[È¸¿ø¸ñ·Ï Á¶È¸]");
-		Iterator<String> mapIter = BitStore.userList.keySet().iterator();
-		while (mapIter.hasNext()) {
-			String key = mapIter.next();
-			UserVO value = BitStore.userList.get(key);
-			System.out.println(value + " / ");
-		}
 
 	}
 
@@ -168,70 +163,57 @@ public class BitStore {
 
 	}
 
-	private String userID;
-	public void checkID() {
-		userID = sc.nextLine().trim();
-		System.out.println(userID);
+	public void checkID(String ID) {
 		Set<String> keys = userList.keySet();
 		while (true) {
 			Pattern idPattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*[^!@#$%^*+=-])(?=.*[^°¡-ÆR])(?=.*[0-9]).{5,15}$");
-			Matcher matcher1 = idPattern.matcher(userID);
+			Matcher matcher1 = idPattern.matcher(ID);
 			for (String key : keys) {
-				if (key.equals(userID)) {
+				if (key.equals(ID)) {
 					System.out.println("ÀÌ¹Ì »ç¿ëÁßÀÎ ¾ÆÀÌµğÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
-					checkID();
+					checkID(ID);
 				}
 			}
 			if (!matcher1.matches()) {
-				System.out.println("ÀÔ·Â °ª : " + userID);
 				System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
 				System.out.println("5~15ÀÚ ¿µ¹®°ú ¼ıÀÚ¸¦ Á¶ÇÕÇÏ¿© ´Ù½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
-				checkID();
 			} else {
-				user.setID(userID);
+				user.setID(ID);
 				return;
 			}
 		}
 	}
 
-	private String userPwd;
-	public void checkPwd() {
-		userPwd = sc.nextLine().trim();
+	public void checkPwd(String Pwd) {
 		while (true) {
 			Pattern pwPattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$");
-			Matcher matcher1 = pwPattern.matcher(userPwd);
+			Matcher matcher1 = pwPattern.matcher(Pwd);
 			if (!matcher1.matches()) {
 				System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
 				System.out.println("8~20ÀÚ »çÀÌÀÇ ¿µ¹® °ú ¼ıÀÚ,Æ¯¼ö¹®ÀÚ¸¦ Á¶ÇÕÇØ ´Ù½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
-				checkPwd();
 			} else {
-				user.setPwd(userPwd);
+				user.setPwd(Pwd);
 				return;
 			}
 		}
 	}
 
-	String userPhone;
-	public void checkPhone() {
-		userPhone = sc.nextLine().trim();
+	public void checkPhone(String Phone) {
 		while (true) {
 			Pattern phonePattern = Pattern.compile("^01([0|1|0]?)-?([0-9]{3,4})-?([0-9]{4})$");
-			Matcher matcher1 = phonePattern.matcher(userPhone);
+			Matcher matcher1 = phonePattern.matcher(Phone);
 			if (!matcher1.matches()) {
 				System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
 				System.out.println("010-0000-0000 Çü½ÄÀ¸·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
-				checkPhone();
 			} else {
-				user.setUserPhone(userPhone);
+				user.setUserPhone(Phone);
 				return;
 			}
 		}
 
 	}
 
-	int userDC;
-	public void checkDC() {
-		userDC = (Integer.parseInt(sc.nextLine().trim()));
+	public void checkDC(int userDC) {
 		while (true) {
 			if (userDC == 1) {
 				user.setDiscount(true);
@@ -241,7 +223,6 @@ public class BitStore {
 				break;
 			} else {
 				System.out.println("Àß¸øÀÔ·Â ÇÏ¼Ì½À´Ï´Ù.");
-				checkDC();
 			}
 		}
 	}

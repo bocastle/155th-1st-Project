@@ -3,17 +3,14 @@ package BitStore.ui.user;
 import java.util.Scanner;
 
 import BitStore.ui.LoginUI;
-import BitStore.util.BitStore;
 
 public class UserUI {
 	private Scanner sc = new Scanner(System.in);
-	private BitStore bs = new BitStore();
 
 	public void service() {
 		while (true) {
 			switch (menu()) {
 			case 1:
-				bs.join();
 				// BitStroe의 join메소드 출력
 				break;
 			case 2:

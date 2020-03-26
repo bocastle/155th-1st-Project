@@ -168,10 +168,8 @@ public class BitStore {
 
 	}
 
-	private String userID;
 	public void checkID() {
-		userID = sc.nextLine().trim();
-		System.out.println(userID);
+		String userID = sc.nextLine().trim();
 		Set<String> keys = userList.keySet();
 		while (true) {
 			Pattern idPattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*[^!@#$%^*+=-])(?=.*[^°¡-ÆR])(?=.*[0-9]).{5,15}$");
@@ -194,9 +192,8 @@ public class BitStore {
 		}
 	}
 
-	private String userPwd;
 	public void checkPwd() {
-		userPwd = sc.nextLine().trim();
+		String userPwd = sc.nextLine().trim();
 		while (true) {
 			Pattern pwPattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$");
 			Matcher matcher1 = pwPattern.matcher(userPwd);
@@ -211,9 +208,8 @@ public class BitStore {
 		}
 	}
 
-	String userPhone;
 	public void checkPhone() {
-		userPhone = sc.nextLine().trim();
+		String userPhone = sc.nextLine().trim();
 		while (true) {
 			Pattern phonePattern = Pattern.compile("^01([0|1|0]?)-?([0-9]{3,4})-?([0-9]{4})$");
 			Matcher matcher1 = phonePattern.matcher(userPhone);
@@ -229,9 +225,8 @@ public class BitStore {
 
 	}
 
-	int userDC;
 	public void checkDC() {
-		userDC = (Integer.parseInt(sc.nextLine().trim()));
+		int userDC = (Integer.parseInt(sc.nextLine().trim()));
 		while (true) {
 			if (userDC == 1) {
 				user.setDiscount(true);
