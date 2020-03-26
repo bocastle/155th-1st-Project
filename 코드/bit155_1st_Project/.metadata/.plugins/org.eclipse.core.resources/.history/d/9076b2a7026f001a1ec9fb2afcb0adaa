@@ -28,33 +28,26 @@ public class Product {
 
 	public void insertProduct() {
 		int productNo = Integer.parseInt("880" + (r.nextInt(900000) + 100000));
-
-		ProductVO product = new ProductVO();
-		product.setProductNo(productNo);
 		System.out.print("추가할 상품의 이름을 입력하세요: ");
-		product.setProductName(sc.nextLine());
+		String productName = sc.nextLine();
 		System.out.print("추가할 상품의 재고량을 입력하세요: ");
-		product.setStock(Integer.parseInt(sc.nextLine()));
+		int stock = Integer.parseInt(sc.nextLine());
+		String dateDate;
 		while (true) {
 			System.out.print("추가할 상품의 유통기한을 입력하세요: ");
-			String dateDate = sc.nextLine();
+			dateDate = sc.nextLine();
 			Pattern idPattern = Pattern.compile("(\\d{4})-(\\d{2})-(\\d{2})");
 			Matcher matcher = idPattern.matcher(dateDate);
 			if (!matcher.matches()) {
 				System.out.println("YYYY-MM-DD 형식을 사용하세요.");
 			} else {
-				product.setExprtDate(dateDate);
 				break;
 			}
 		}
 		System.out.print("추가할 상품의 가격을 입력하세요: ");
-		product.setPrice(Integer.parseInt(sc.nextLine()));
-
-		BitStore.productList.put(productNo, product);
-		System.out.println();
-
-		System.out.println(BitStore.productList);
-
+		int price = Integer.parseInt(sc.nextLine());
+		BitStore.productList.put(productNo, new ProductVO(productNo, 
+				productName, stock, dateDate, price));
 		writeProduct();
 	}
 
@@ -91,6 +84,7 @@ public class Product {
 		}
 	}
 
+	
 //	public void selectProduct() {
 //		File file = new File("productList.txt");
 //		FileInputStream fis = null;
@@ -124,12 +118,12 @@ public class Product {
 //	}
 
 	public void updateProduct() {
-		// 업데이트 로직
+		//업데이트 로직
 		writeProduct();
 	}
 
 	public void deleteProduct() {
-		// 제거 로직
+		//제거 로직
 		writeProduct();
 	}
 

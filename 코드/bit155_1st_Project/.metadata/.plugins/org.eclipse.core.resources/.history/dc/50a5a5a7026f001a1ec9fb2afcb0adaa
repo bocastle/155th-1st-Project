@@ -7,6 +7,14 @@ public class DiscardProductVO implements Serializable{
 	private String discardProductName;
 	private String discardExprtDate;
 	private int discardPrice;
+	
+	public DiscardProductVO(int discardProductNo, String discardProductName, String discardExprtDate,
+			int discardPrice) {
+		this.discardProductNo = discardProductNo;
+		this.discardProductName = discardProductName;
+		this.discardExprtDate = discardExprtDate;
+		this.discardPrice = discardPrice;
+	}
 
 	public void setDiscardProductNo(int discardProductNo) {
 		this.discardProductNo = discardProductNo;

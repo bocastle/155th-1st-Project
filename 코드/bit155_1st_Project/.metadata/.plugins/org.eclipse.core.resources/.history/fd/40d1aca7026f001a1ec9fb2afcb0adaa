@@ -8,6 +8,14 @@ public class ProductVO implements Serializable {
 	private int stock;
 	private String exprtDate;
 	private int price;
+	
+	public ProductVO(int productNo, String productName, int stock, String exprtDate, int price) {
+		this.productNo = productNo;
+		this.productName = productName;
+		this.stock = stock;
+		this.exprtDate = exprtDate;
+		this.price = price;
+	}
 
 	public int getProductNo() {
 		return productNo;

@@ -25,7 +25,7 @@ public class BitStore {
 	public static Map<Integer, ProductVO> productList = new HashMap();
 	public static Map<Integer, DiscardProductVO> discardProductList = new HashMap();
 	public static Map<Integer, BoardVO> boardList = new HashMap();
-	public static UserVO currentLoginUser = new UserVO();
+	public static UserVO currentLoginUser = new UserVO(null, null, null, null, 0, 0, false, null);
 	Scanner in;
 	File userListFile;
 	File productListFile;
@@ -40,20 +40,11 @@ public class BitStore {
 			BufferedOutputStream bos = null;
 			ObjectOutputStream oos = null;
 			try {
-				UserVO initUserVO = new UserVO();
 				userListFile.createNewFile();
 				fos = new FileOutputStream(userListFile); // admin 계정을 default로 추가
 				bos = new BufferedOutputStream(fos);
 				oos = new ObjectOutputStream(fos);
-				initUserVO.setID("admin");
-				initUserVO.setPwd("admin");
-				initUserVO.setUserName("admin");
-				initUserVO.setUserPhone("000-0000-0000");
-				initUserVO.setMoney(0);
-				initUserVO.setUserPoint(0);
-				initUserVO.setDiscount(false);
-				initUserVO.setOrderList(null);
-				userList.put("admin", initUserVO);
+				userList.put("admin", new UserVO("admin", "admin", "admin", "010-0000-0000", 0, 0, false, null));
 				oos.writeObject(userList);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -65,17 +56,11 @@ public class BitStore {
 			BufferedOutputStream bos = null;
 			ObjectOutputStream oos = null;
 			try {
-				ProductVO initProductVO = new ProductVO();
 				productListFile.createNewFile();
 				fos = new FileOutputStream(productListFile); // snack 상품을 default로 추가
 				bos = new BufferedOutputStream(fos);
 				oos = new ObjectOutputStream(fos);
-				initProductVO.setProductNo(880100000);
-				initProductVO.setProductName("Snack");
-				initProductVO.setStock(50);
-				initProductVO.setExprtDate("2020-04-26");
-				initProductVO.setPrice(500);
-				productList.put(880100000, initProductVO);
+				productList.put(880123456, new ProductVO(880123456, "Snack", 80, "2020-04-25", 3000));
 				oos.writeObject(productList);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -87,16 +72,11 @@ public class BitStore {
 			BufferedOutputStream bos = null;
 			ObjectOutputStream oos = null;
 			try {
-				DiscardProductVO initDiscardProductVO = new DiscardProductVO();
 				discardProductListFile.createNewFile();
 				fos = new FileOutputStream(discardProductListFile); // beverage 상품을 default로 추가
 				bos = new BufferedOutputStream(fos);
 				oos = new ObjectOutputStream(fos);
-				initDiscardProductVO.setDiscardProductNo(880200000);
-				initDiscardProductVO.setDiscardProductName("Beverage");
-				initDiscardProductVO.setDiscardExprtDate("2020-03-25");
-				initDiscardProductVO.setDiscardPrice(500);
-				discardProductList.put(880200000, initDiscardProductVO);
+				discardProductList.put(880123456, new DiscardProductVO(880123456, "beverage", "2020-03-25", 1000));
 				oos.writeObject(discardProductList);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -108,17 +88,11 @@ public class BitStore {
 			BufferedOutputStream bos = null;
 			ObjectOutputStream oos = null;
 			try {
-				BoardVO initBoardVO = new BoardVO();
 				boardListFile.createNewFile();
 				fos = new FileOutputStream(boardListFile); // 첫번째 게시글을 default로 추가
 				bos = new BufferedOutputStream(fos);
 				oos = new ObjectOutputStream(fos);
-				initBoardVO.setBoardNo(1);
-				initBoardVO.setBoardTitle("제목 테스트");
-				initBoardVO.setBoardContent("내용 테스트");
-				initBoardVO.setBoardWriter("admin");
-				initBoardVO.setBoardDate("2020-03-26");
-				boardList.put(1, initBoardVO);
+				boardList.put(1, new BoardVO(1, "제목 테스트", "내용 테스트", "admin", "2020-03-25"));
 				oos.writeObject(boardList);
 			} catch (IOException e) {
 				e.printStackTrace();

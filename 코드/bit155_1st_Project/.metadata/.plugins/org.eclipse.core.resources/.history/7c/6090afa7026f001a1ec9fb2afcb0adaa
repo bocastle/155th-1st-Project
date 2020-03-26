@@ -15,6 +15,18 @@ public class UserVO implements Serializable{
 	private boolean discount;
 	private List<Product> orderList;
 
+	public UserVO(String iD, String pwd, String userName, String userPhone, int money, int userPoint, boolean discount,
+			List<Product> orderList) {
+		ID = iD;
+		this.pwd = pwd;
+		this.userName = userName;
+		this.userPhone = userPhone;
+		this.money = money;
+		this.userPoint = userPoint;
+		this.discount = discount;
+		this.orderList = orderList;
+	}
+
 	public String getID() {
 		return ID;
 	}

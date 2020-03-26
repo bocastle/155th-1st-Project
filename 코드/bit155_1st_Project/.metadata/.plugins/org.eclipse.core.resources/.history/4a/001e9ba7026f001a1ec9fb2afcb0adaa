@@ -8,6 +8,14 @@ public class BoardVO implements Serializable{
 	private String boardContent;
 	private String boardWriter;
 	private String boardDate;
+	
+	public BoardVO(int boardNo, String boardTitle, String boardContent, String boardWriter, String boardDate) {
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardWriter = boardWriter;
+		this.boardDate = boardDate;
+	}
 
 	public int getBoardNo() {
 		return boardNo;
