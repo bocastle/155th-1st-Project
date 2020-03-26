@@ -6,6 +6,8 @@ import BitStore.ui.admin.MemberUI;
 import BitStore.ui.admin.ProductUI;
 import BitStore.ui.user.BitStoreUI;
 import BitStore.ui.user.UserUI;
+import BitStore.util.BitStore;
+import BitStore.util.User;
 
 public class LoginUI {
 	private Scanner sc;
@@ -35,6 +37,8 @@ public class LoginUI {
 				boardUI.commonBoard();
 				break;
 			case 4: // 로그아웃
+				BitStore bitstore = new BitStore();
+				bitstore.logout();
 //				userUI.service();
 				// 로그아웃시 BitStore에 있는 currentLoginUser null로 초기화 추가
 			case 0:
@@ -47,7 +51,6 @@ public class LoginUI {
 
 	// 사용자일 경우
 	public void user() {
-		UserUI user = new UserUI();
 		while (true) {
 			switch (userMenu()) {
 			case 1: // 편의점 이용
@@ -58,10 +61,13 @@ public class LoginUI {
 				boardUI.commonBoard();
 				break;
 			case 3: // 회원정보 수정
-				// User클래스의 updateUser(User) : boolean 호출
+				User user2 = new User();
+				user2.updateUser();
 				break;
 			case 4: // 로그아웃
-				userUI.service();
+				BitStore bitstore = new BitStore();
+				bitstore.logout();
+//				userUI.service();
 				// 로그아웃시 BitStore에 있는 currentLoginUser null로 초기화 추가
 			case 0:
 				quit();

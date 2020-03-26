@@ -29,10 +29,6 @@ public class MemberUI {
 				LoginUI loginUI = new LoginUI();
 				loginUI.admin();
 				break;
-			case 6: // 돌아가기
-				User us = new User();
-				us.updateUser();
-				break;
 			case 0:
 				quit();
 			default:

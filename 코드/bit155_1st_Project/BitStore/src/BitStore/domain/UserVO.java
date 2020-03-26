@@ -5,7 +5,7 @@ import java.util.List;
 
 import BitStore.util.Product;
 
-public class UserVO implements Serializable{
+public class UserVO implements Serializable {
 	private String ID;
 	private String pwd;
 	private String userName;
@@ -81,10 +81,8 @@ public class UserVO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "아이디 : " + ID + ", 비밀번호 : " + pwd + ", 이름 : " +
-					userName + ", 핸드폰 : " + userPhone + ", 돈 : "
-				+ money + ", 포인트 : " + userPoint + ", 할인가능여부 : " + discount + ", "
-						+ "주문 목록=" + orderList;
+		return "아이디 : " + ID + ", 비밀번호 : " + pwd + ", 이름 : " + userName + ", 핸드폰 : " + userPhone + ", 돈 : " + money
+				+ ", 포인트 : " + userPoint + ", 할인가능여부 : " + discount + ", " + "주문 목록=" + orderList;
 	}
 
 }

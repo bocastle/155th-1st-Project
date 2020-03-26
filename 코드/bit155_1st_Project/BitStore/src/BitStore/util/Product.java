@@ -52,9 +52,7 @@ public class Product {
 
 		BitStore.productList.put(productNo, product);
 		System.out.println();
-
 		System.out.println(BitStore.productList);
-
 		writeProduct();
 	}
 
@@ -69,6 +67,7 @@ public class Product {
 			oos = new ObjectOutputStream(bos);
 			oos.writeObject(BitStore.productList);
 		} catch (Exception e) {
+			System.out.println("상품목록 저장에 실패하였습니다.");
 			e.getStackTrace();
 		} finally {
 			try {
