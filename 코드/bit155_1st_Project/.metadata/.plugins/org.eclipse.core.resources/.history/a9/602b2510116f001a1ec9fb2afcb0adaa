@@ -17,7 +17,6 @@ public class UserUI {
 				// BitStroe의 join메소드 출력
 				break;
 			case 2:
-				bs.login();
 				// BitStroe의 login메소드 출력
 				break;
 			case 3:

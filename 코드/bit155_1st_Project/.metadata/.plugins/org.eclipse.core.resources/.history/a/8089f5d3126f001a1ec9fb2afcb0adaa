@@ -91,6 +91,38 @@ public class Product {
 		}
 	}
 
+//	public void selectProduct() {
+//		File file = new File("productList.txt");
+//		FileInputStream fis = null;
+//		BufferedInputStream bis = null;
+//		ObjectInputStream ois = null;
+//		try {
+//			fis = new FileInputStream(file);
+//			bis = new BufferedInputStream(fis);
+//			ois = new ObjectInputStream(bis);
+//			System.out.println("??????");
+//			BitStore.productList = (HashMap<Integer, ProductVO>) ois.readObject();
+//			System.out.println("??????2222222222");
+//			System.out.println(BitStore.productList);
+//			Set<Integer> keys = BitStore.productList.keySet();
+//			for (int key : keys) {
+//				System.out.println(key);
+//			}
+//
+//		} catch (Exception e) {
+//			e.getStackTrace();
+//		} finally {
+//			try {
+//				ois.close();
+//				bis.close();
+//				fis.close();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return null;
+//	}
+
 	public void updateProduct() {
 		// 업데이트 로직
 		writeProduct();

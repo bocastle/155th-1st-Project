@@ -11,6 +11,7 @@ import BitStore.util.PurChase;
 
 public class BitStoreUI {
 	private Scanner sc = new Scanner(System.in);
+	private LoginUI loginUI = new LoginUI();
 	private PayMent payment;
 
 	public void useBitStore() {
@@ -32,7 +33,6 @@ public class BitStoreUI {
 				purchase2.selectPoint();
 				break;
 			case 5: // 돌아가기
-				LoginUI loginUI = new LoginUI();
 				loginUI.user();
 				break;
 			case 0:
@@ -47,7 +47,6 @@ public class BitStoreUI {
 		while (true) {
 			switch (purchaseMenu()) {
 			case 1: // 상품 할인
-				PurChase purchase = new PurChase();
 				purchase.discountProduct();
 				break;
 			case 2: // 결제 방식

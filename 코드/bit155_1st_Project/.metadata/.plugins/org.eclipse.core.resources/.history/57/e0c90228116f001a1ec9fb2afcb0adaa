@@ -11,28 +11,27 @@ import BitStore.util.PurChase;
 
 public class BitStoreUI {
 	private Scanner sc = new Scanner(System.in);
+	private LoginUI loginUI = new LoginUI();
+	private PurChase purchase = new PurChase();
+	private Product product = new Product();
 	private PayMent payment;
 
 	public void useBitStore() {
 		while (true) {
 			switch (menu()) {
 			case 1: // 장바구니 담기, Purchase클래스의 insertBasket(List<Product>) : void
-				PurChase purchase = new PurChase();
 				purchase.insertBasket(); //미완성!!!
 				break;
 			case 2: // 상품 구입, Payment pay = n
 				usePurchase(); //내부 상품 구입 switch 이동
 				break;
 			case 3: // 상품조회 Product클래스의 selectProduct() : Map<Integer,Product>
-				Product product2 = new Product();
-				product2.selectProduct();
+				product.selectProduct();
 				break;
 			case 4: // 포인트조회 Purchase클래스의 selectPoint(User) : int
-				PurChase purchase2 = new PurChase();
-				purchase2.selectPoint();
+				purchase.selectPoint();
 				break;
 			case 5: // 돌아가기
-				LoginUI loginUI = new LoginUI();
 				loginUI.user();
 				break;
 			case 0:
@@ -47,7 +46,6 @@ public class BitStoreUI {
 		while (true) {
 			switch (purchaseMenu()) {
 			case 1: // 상품 할인
-				PurChase purchase = new PurChase();
 				purchase.discountProduct();
 				break;
 			case 2: // 결제 방식

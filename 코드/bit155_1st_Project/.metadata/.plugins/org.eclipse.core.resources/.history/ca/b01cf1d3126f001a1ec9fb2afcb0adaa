@@ -34,7 +34,6 @@ public class BitStore {
 	private File productListFile;
 	private File discardProductListFile;
 	private File boardListFile;
-	private UserVO user;
 
 	public BitStore() {
 		userListFile = new File("userList.txt");
@@ -167,7 +166,7 @@ public class BitStore {
 	}
 
 	public void login() {
-
+		
 		System.out.println("[회원목록 조회]");
 		Iterator<String> mapIter = BitStore.userList.keySet().iterator();
 		while (mapIter.hasNext()) {
@@ -175,7 +174,7 @@ public class BitStore {
 			UserVO value = BitStore.userList.get(key);
 			System.out.println(value + " / ");
 		}
-
+		
 		while (true) {
 			System.out.println("※ Bit 편의점 로그인※");
 			System.out.println("아이디를 입력해주세요 : ");
@@ -188,31 +187,33 @@ public class BitStore {
 				String userPwd = sc.nextLine().trim();
 				if (userList.get(userID).getPwd().equals(userPwd)) {
 					System.out.print("Bit 편의점에 로그인 되었습니다. : ");
-					if (userID.equals("admin")) { // 관리자 로그인시 currentLoginUser에 로그인한 객체 넣기 / 관리자 페이지 이동
+					if (userID.equals("admin")) { //관리자 로그인시 currentLoginUser에 로그인한 객체 넣기 / 관리자 페이지 이동
 						LoginUI lu = new LoginUI();
 						Iterator<String> mapIter2 = BitStore.userList.keySet().iterator();
 						while (mapIter2.hasNext()) {
-							String key = mapIter2.next();
+							String key = mapIter.next();
 							UserVO value = BitStore.userList.get(key);
-							if (userID.equals(value.getID())) {
+							System.out.println(value + " / ");
+							if(userID.equals(value.getID())) {
 								currentLoginUser = value;
-								System.out.println("admin 계정 : " + currentLoginUser.toString());
 								break;
 							}
 						}
 						lu.admin();
-					} else { // 사용자 로그인시 currentLoginUser에 로그인한 객체 넣기 / 사용자 페이지 이동
+					} else { //사용자 로그인시 currentLoginUser에 로그인한 객체 넣기 / 사용자 페이지 이동
 						LoginUI lu = new LoginUI();
 						Iterator<String> mapIter3 = BitStore.userList.keySet().iterator();
 						while (mapIter3.hasNext()) {
 							String key = mapIter3.next();
 							UserVO value = BitStore.userList.get(key);
-							if (userID.equals(value.getID())) {
+							System.out.println(value + " / ");
+							if(userID.equals(value.getID())) {
 								currentLoginUser = value;
-								System.out.println("사용자 계정 : " + currentLoginUser.toString());
 								break;
 							}
 						}
+						currentLoginUser = user;
+						System.out.println(currentLoginUser.toString());
 						lu.user();
 					}
 					break;
@@ -245,7 +246,6 @@ public class BitStore {
 				System.out.println("5~15자 영문과 숫자를 조합하여 다시 입력해 주세요");
 				checkID();
 			} else {
-				user.setID(userID);
 				return;
 			}
 		}
@@ -263,7 +263,6 @@ public class BitStore {
 				System.out.println("8~20자 사이의 영문 과 숫자,특수문자를 조합해 다시 입력해 주세요.");
 				checkPwd();
 			} else {
-				user.setPwd(userPwd);
 				return;
 			}
 		}
@@ -281,7 +280,6 @@ public class BitStore {
 				System.out.println("010-0000-0000 형식으로 입력해 주세요.");
 				checkPhone();
 			} else {
-				user.setUserPhone(userPhone);
 				return;
 			}
 		}

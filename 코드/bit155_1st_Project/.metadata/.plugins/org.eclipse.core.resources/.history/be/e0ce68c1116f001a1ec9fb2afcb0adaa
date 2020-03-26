@@ -29,12 +29,12 @@ public class BitStore {
 	public static Map<Integer, DiscardProductVO> discardProductList = new HashMap();
 	public static Map<Integer, BoardVO> boardList = new HashMap();
 	public static UserVO currentLoginUser = new UserVO();
+	private static UserVO user;
 	private Scanner sc;
 	private File userListFile;
 	private File productListFile;
 	private File discardProductListFile;
 	private File boardListFile;
-	private UserVO user;
 
 	public BitStore() {
 		userListFile = new File("userList.txt");
@@ -167,15 +167,6 @@ public class BitStore {
 	}
 
 	public void login() {
-
-		System.out.println("[회원목록 조회]");
-		Iterator<String> mapIter = BitStore.userList.keySet().iterator();
-		while (mapIter.hasNext()) {
-			String key = mapIter.next();
-			UserVO value = BitStore.userList.get(key);
-			System.out.println(value + " / ");
-		}
-
 		while (true) {
 			System.out.println("※ Bit 편의점 로그인※");
 			System.out.println("아이디를 입력해주세요 : ");
@@ -188,31 +179,17 @@ public class BitStore {
 				String userPwd = sc.nextLine().trim();
 				if (userList.get(userID).getPwd().equals(userPwd)) {
 					System.out.print("Bit 편의점에 로그인 되었습니다. : ");
-					if (userID.equals("admin")) { // 관리자 로그인시 currentLoginUser에 로그인한 객체 넣기 / 관리자 페이지 이동
+					if (userID.equals("admin")) { // admin이면 adminUI 페이지 ㄱ고싱
 						LoginUI lu = new LoginUI();
-						Iterator<String> mapIter2 = BitStore.userList.keySet().iterator();
-						while (mapIter2.hasNext()) {
-							String key = mapIter2.next();
-							UserVO value = BitStore.userList.get(key);
-							if (userID.equals(value.getID())) {
-								currentLoginUser = value;
-								System.out.println("admin 계정 : " + currentLoginUser.toString());
-								break;
-							}
-						}
+						System.out.println("기본 User 객체");
+						System.out.println(user.toString());
+						currentLoginUser = user;
 						lu.admin();
-					} else { // 사용자 로그인시 currentLoginUser에 로그인한 객체 넣기 / 사용자 페이지 이동
+					} else {
 						LoginUI lu = new LoginUI();
-						Iterator<String> mapIter3 = BitStore.userList.keySet().iterator();
-						while (mapIter3.hasNext()) {
-							String key = mapIter3.next();
-							UserVO value = BitStore.userList.get(key);
-							if (userID.equals(value.getID())) {
-								currentLoginUser = value;
-								System.out.println("사용자 계정 : " + currentLoginUser.toString());
-								break;
-							}
-						}
+						currentLoginUser = user;
+						System.out.println("사용자 오니?");
+						System.out.println(currentLoginUser.toString());
 						lu.user();
 					}
 					break;
