@@ -22,14 +22,14 @@ import BitStore.domain.ProductVO;
 import BitStore.domain.UserVO;
 
 public class Product {
-	Scanner sc = new Scanner(System.in);
-	Random r = new Random();
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
+	private Scanner sc = new Scanner(System.in);
+	private Random r = new Random();
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	
 	public void insertProduct() {
 		int productNo = Integer.parseInt("880" + (r.nextInt(900000) + 100000));
-
-		ProductVO product = new ProductVO();
+		ProductVO product= new ProductVO();
+	
 		product.setProductNo(productNo);
 		System.out.print("추가할 상품의 이름을 입력하세요: ");
 		product.setProductName(sc.nextLine());
@@ -52,8 +52,16 @@ public class Product {
 
 		BitStore.productList.put(productNo, product);
 		System.out.println();
-		System.out.println(BitStore.productList);
 		writeProduct();
+		
+		// 상품목록
+				System.out.println("[상품목록2222 조회]");
+				Iterator<Integer> mapIter2 = BitStore.productList.keySet().iterator();
+				while (mapIter2.hasNext()) {
+					int key = mapIter2.next();
+					ProductVO value = BitStore.productList.get(key);
+					System.out.println(value + " / ");
+				}
 	}
 
 	public void writeProduct() {
@@ -61,11 +69,24 @@ public class Product {
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
 		ObjectOutputStream oos = null;
+		
+		FileInputStream fis = null;
+		BufferedInputStream bis = null;
+		ObjectInputStream ois = null;
+		
 		try {
-			fos = new FileOutputStream(file, true);
+			fos = new FileOutputStream(file);
 			bos = new BufferedOutputStream(fos);
 			oos = new ObjectOutputStream(bos);
+			
 			oos.writeObject(BitStore.productList);
+			
+			fis = new FileInputStream(file);
+			bis = new BufferedInputStream(fis);
+			ois = new ObjectInputStream(bis);
+			BitStore.productList = (HashMap) ois.readObject();
+			System.out.println("저장된 productList.txt 불러오기 : " + BitStore.productList.toString());
+			
 		} catch (Exception e) {
 			System.out.println("상품목록 저장에 실패하였습니다.");
 			e.getStackTrace();

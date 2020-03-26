@@ -10,6 +10,7 @@ public class UserUI {
 	private BitStore bs = new BitStore();
 
 	public void service() {
+		System.out.println("현재 로그인한 사용자 : " + BitStore.currentLoginUser);
 		while (true) {
 			switch (menu()) {
 			case 1:

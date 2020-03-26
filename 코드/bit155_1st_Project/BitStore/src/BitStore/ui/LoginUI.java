@@ -12,7 +12,11 @@ import BitStore.util.User;
 public class LoginUI {
 	private Scanner sc;
 	private BitStoreUI bitstoreUI;
+	private MemberUI memberUI;
+	private ProductUI productUI;
+	private BoardUI boardUI;
 	private UserUI userUI;
+	private BitStore bitStore;
 
 	public LoginUI() {
 		sc = new Scanner(System.in);
@@ -25,20 +29,20 @@ public class LoginUI {
 		while (true) {
 			switch (adminMenu()) {
 			case 1: // 회원 관리
-				MemberUI memberUI = new MemberUI();
+				memberUI = new MemberUI();
 				memberUI.admin();
 				break;
 			case 2: // 상품 관리
-				ProductUI productUI = new ProductUI();
+				productUI = new ProductUI();
 				productUI.admin();
 				break;
 			case 3: // 게시판
-				BoardUI boardUI = new BoardUI();
+				boardUI = new BoardUI();
 				boardUI.commonBoard();
 				break;
 			case 4: // 로그아웃
-				BitStore bitstore = new BitStore();
-				bitstore.logout();
+				bitStore = new BitStore();
+				bitStore.logout();
 //				userUI.service();
 				// 로그아웃시 BitStore에 있는 currentLoginUser null로 초기화 추가
 			case 0:

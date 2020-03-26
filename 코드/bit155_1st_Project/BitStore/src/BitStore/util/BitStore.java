@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -36,10 +38,11 @@ public class BitStore {
 	private File discardProductListFile;
 	private File boardListFile;
 	private UserVO user;
+	private SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd a HH:mm");
+	private Date date = new Date();
 
 	public BitStore() {
 		userListFile = new File("userList.txt");
-
 		if (!userListFile.exists()) { // userList.txt가 없을시 생성
 			FileOutputStream fos = null;
 			BufferedOutputStream bos = null;
@@ -122,7 +125,7 @@ public class BitStore {
 				initBoardVO.setBoardTitle("제목 테스트");
 				initBoardVO.setBoardContent("내용 테스트");
 				initBoardVO.setBoardWriter("admin");
-				initBoardVO.setBoardDate("2020-03-26");
+				initBoardVO.setBoardDate(dt.format(date));
 				boardList.put(1, initBoardVO);
 				oos.writeObject(boardList);
 			} catch (IOException e) {
@@ -311,7 +314,6 @@ public class BitStore {
 
 	static public void writeUserList() {
 		File file = new File("userList.txt");
-//		file.delete();
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
 		ObjectOutputStream oos = null;
@@ -335,6 +337,7 @@ public class BitStore {
 	}
 
 	public void logout() {
+		currentLoginUser = null;
 		UserUI userUI = new UserUI();
 		userUI.service();
 
