@@ -64,11 +64,9 @@ public class LoginUI {
 				BoardUI boardUI = new BoardUI();
 				boardUI.commonBoard();
 				break;
-			case 3: // 마이페이지
-				MyPageUI mypageUI = new MyPageUI();
-				mypageUI.user();
-//				User user2 = new User();
-//				user2.updateUser();
+			case 3: // 회원정보 수정
+				User user2 = new User();
+				user2.updateUser();
 				break;
 			case 4: // 로그아웃
 				BitStore bitstore = new BitStore();
@@ -104,7 +102,7 @@ public class LoginUI {
 		System.out.println("-----------------");
 		System.out.println("1. 편의점 이용");
 		System.out.println("2. 게시판");
-		System.out.println("3. 마이 페이지");
+		System.out.println("3. 회원정보 수정");
 		System.out.println("4. 로그아웃");
 		System.out.println("0. 종료");
 		System.out.println("-----------------");

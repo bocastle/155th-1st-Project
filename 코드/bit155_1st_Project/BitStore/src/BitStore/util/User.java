@@ -10,7 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import BitStore.domain.UserVO;
-import BitStore.ui.user.UserUI;
 
 public class User {
 
@@ -73,36 +72,6 @@ public class User {
 			}
 		}
 		System.out.println("삭제할 아이디가 없습니다.");
-	}
-
-	public void myInfoUser() { // 내 정보 확인
-		UserVO user = BitStore.currentLoginUser;
-		Iterator<String> mapIter = BitStore.userList.keySet().iterator();
-		while (mapIter.hasNext()) {
-			String key = mapIter.next();
-			UserVO value = BitStore.userList.get(key);
-			if(user.getID().equals(key)) {
-				System.out.println(value);
-			}
-		}
-	}
-
-	public void quitUser() { // 회원탈퇴
-		UserUI userUI = new UserUI();
-		String deleteID = BitStore.currentLoginUser.getID();
-		Iterator<String> mapIter = BitStore.userList.keySet().iterator();
-		while (mapIter.hasNext()) {
-			String key = mapIter.next();
-			UserVO value = BitStore.userList.get(key);
-			if (deleteID.equals(key)) {
-				BitStore.userList.remove(key);
-				System.out.println(key + "아이디가 정상적으로 탈퇴되었습니다.");
-				BitStore.writeUserList();
-				userUI.service();
-				return;
-			}
-		}
-
 	}
 
 }
