@@ -2,7 +2,7 @@ package BitStore.domain;
 
 import java.io.Serializable;
 
-public class DiscardProductVO implements Serializable{
+public class DiscardProductVO implements Serializable {
 	private int discardProductNo;
 	private String discardProductName;
 	private String discardExprtDate;
@@ -10,6 +10,10 @@ public class DiscardProductVO implements Serializable{
 
 	public void setDiscardProductNo(int discardProductNo) {
 		this.discardProductNo = discardProductNo;
+	}
+
+	public int getDiscardProductNo() {
+		return discardProductNo;
 	}
 
 	public String getDiscardProductName() {
@@ -38,9 +42,8 @@ public class DiscardProductVO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "폐기상품번호 : " + discardProductNo + ","
-				+ " 폐기상품명 : " + discardProductName
-				+ ", 폐기상품 유통기한 : " + discardExprtDate + ", 폐기상품 단가 : " + discardPrice;
+		return "폐기상품번호 : " + discardProductNo + "," + " 폐기상품명 : " + discardProductName + ", 폐기상품 유통기한 : "
+				+ discardExprtDate + ", 폐기상품 단가 : " + discardPrice;
 	}
 
 }

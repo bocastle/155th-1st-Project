@@ -4,31 +4,40 @@ import java.util.Scanner;
 
 import BitStore.ui.BoardUI;
 import BitStore.ui.LoginUI;
+import BitStore.util.DiscardProduct;
 import BitStore.util.Product;
 
 public class ProductUI {
 	private Scanner sc = new Scanner(System.in);
 	private Product product;
-	
+	private DiscardProduct discardProduct;
+
 	public ProductUI() {
 		sc = new Scanner(System.in);
 		product = new Product();
+		discardProduct = new DiscardProduct();
 	}
 
 	public void admin() {
 		while (true) {
 			switch (adminMenu()) {
-			case 1: product.insertProduct(); // 상품정보 입력
+			case 1:
+				product.insertProduct(); // 상품정보 입력
 				break;
-			case 2: product.selectProduct(); // 상품목록 조회
+			case 2:
+				product.selectProduct(); // 상품목록 조회
 				break;
-			case 3: product.updateProduct(); // 상품정보 수정, Product클래스의 updateProduct(Product) : boolean 호출
+			case 3:
+				product.updateProduct(); // 상품정보 수정, Product클래스의 updateProduct(Product) : boolean 호출
 				break;
-			case 4: product.deleteProduct();// 상품정보 삭제, Product클래스의 deleteProduct(int) : boolean 호출
+			case 4:
+				product.deleteProduct();// 상품정보 삭제, Product클래스의 deleteProduct(int) : boolean 호출
 				break;
-			case 5: // 폐기상품 등록, DiscardProduct클래스의 insertDiscardProduct(DiscardProduct) : void 호출
+			case 5:
+				discardProduct.insertDiscardProduct(); // 폐기상품 등록
 				break;
-			case 6: // 폐기상품 조회, DiscardProduct클래스의 selectDiscardProduct(DiscardProduct) : Map<Integer, DiscardProduct> 호출
+			case 6:
+				discardProduct.selectDiscardProduct();// 폐기상품 조회
 				break;
 			case 7: // 돌아가기
 				LoginUI loginUI = new LoginUI();
@@ -54,7 +63,7 @@ public class ProductUI {
 		System.out.println("3. 상품정보 수정");
 		System.out.println("4. 상품정보 삭제");
 		System.out.println("5. 폐기상품 등록");
-		System.out.println("6. 폐기상품 등록");
+		System.out.println("6. 폐기상품 조회");
 		System.out.println("7. 돌아가기");
 		System.out.println("0. 종료");
 		System.out.println("-----------------");

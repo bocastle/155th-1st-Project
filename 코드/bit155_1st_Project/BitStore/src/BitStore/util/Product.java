@@ -25,11 +25,11 @@ public class Product {
 	private Scanner sc = new Scanner(System.in);
 	private Random r = new Random();
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	
+
 	public void insertProduct() {
 		int productNo = Integer.parseInt("880" + (r.nextInt(900000) + 100000));
-		ProductVO product= new ProductVO();
-	
+		ProductVO product = new ProductVO();
+
 		product.setProductNo(productNo);
 		System.out.print("추가할 상품의 이름을 입력하세요: ");
 		product.setProductName(sc.nextLine());
@@ -53,15 +53,6 @@ public class Product {
 		BitStore.productList.put(productNo, product);
 		System.out.println();
 		writeProduct();
-		
-		// 상품목록
-				System.out.println("[상품목록2222 조회]");
-				Iterator<Integer> mapIter2 = BitStore.productList.keySet().iterator();
-				while (mapIter2.hasNext()) {
-					int key = mapIter2.next();
-					ProductVO value = BitStore.productList.get(key);
-					System.out.println(value + " / ");
-				}
 	}
 
 	static public void writeProduct() {
@@ -69,13 +60,13 @@ public class Product {
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
 		ObjectOutputStream oos = null;
-		
+
 		try {
 			fos = new FileOutputStream(file);
 			bos = new BufferedOutputStream(fos);
 			oos = new ObjectOutputStream(bos);
 			oos.writeObject(BitStore.productList);
-			
+
 		} catch (Exception e) {
 			System.out.println("상품목록 저장에 실패하였습니다.");
 			System.out.println(e.getMessage());
@@ -92,23 +83,65 @@ public class Product {
 	}
 
 	public void selectProduct() {
-		System.out.println("[상품목록 조회]");
+		System.out.println("[상품목록]");
 		Iterator<Integer> mapIter = BitStore.productList.keySet().iterator();
 		while (mapIter.hasNext()) {
 			int key = mapIter.next();
 			ProductVO value = BitStore.productList.get(key);
-			System.out.println(value + " / ");
+			System.out.println(value);
 		}
 	}
 
 	public void updateProduct() {
-		// 업데이트 로직
-		writeProduct();
+		selectProduct();
+		boolean flag = false;
+		try {
+			System.out.print("수정할 상품의 상품 번호를 입력하세요: ");
+			int inputNum = Integer.parseInt(sc.nextLine());
+			Set<Integer> keys = BitStore.productList.keySet();
+			for (int key : keys) {
+				if (BitStore.productList.get(key).getProductNo() == inputNum) {
+					ProductVO value = BitStore.productList.get(key);
+					System.out.print("수정할 상품의 재고량을 입력하세요: ");
+					value.setStock(Integer.parseInt(sc.nextLine()));
+					System.out.print("수정할 상품의 단가를 입력하세요: ");
+					value.setPrice(Integer.parseInt(sc.nextLine()));
+					System.out.println(value.getProductName() + " 상품이 수정 되었습니다.");
+					flag = true;
+					writeProduct();
+					break;
+				}
+			}
+			if (flag == false) {
+				System.out.println("존재하지 않는 상품 번호입니다.");
+			}
+		} catch (NumberFormatException e) {
+			System.out.println("존재하지 않는 상품 번호입니다.");
+		}
 	}
 
 	public void deleteProduct() {
-		// 제거 로직
-		writeProduct();
+		selectProduct();
+		boolean flag = false;
+		try {
+			System.out.print("삭제할 상품의 상품 번호를 입력하세요: ");
+			int inputNum = Integer.parseInt(sc.nextLine());
+			Set<Integer> keys = BitStore.productList.keySet();
+			for (int key : keys) {
+				if (BitStore.productList.get(key).getProductNo() == inputNum) {
+					ProductVO value = BitStore.productList.remove(key);
+					System.out.println(value.getProductName() + " 상품이 삭제 되었습니다.");
+					flag = true;
+					writeProduct();
+					break;
+				}
+			}
+			if (flag == false) {
+				System.out.println("존재하지 않는 상품 번호입니다.");
+			}
+		} catch (NumberFormatException e) {
+			System.out.println("존재하지 않는 상품 번호입니다.");
+		}
 	}
 
 }
